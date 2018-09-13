@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body, html {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-image: url("http://api.thumbr.it/whitenoise-361x370.png?background=303030ff&noise=a3a3a3&density=20&opacity=15"); 
+  display: grid;
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
+}
+
+.calcWrapper {
+  display: grid;
+  padding: 3px;;
+  grid-gap: 3px;
+  grid-template-rows:20px 60px repeat(5, 60px);
+  grid-template-columns: repeat(4, 60px);
+  grid-template-areas:
+    "eqn eqn eqn eqn" 
+    "header header header header";
+  overflow: hidden;
+  background-color: rgba(112, 112, 112, 0.473);
+}
+
+.equation {
+  grid-area: eqn;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  color: #aaa;
+}
+
+.display {
+  font-size: 3em;
+  padding: 3px;
+  grid-area: header;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  color: #fff;
+}
+
+.button {
+  display: block;
+  background-color: transparent;
+  border: 2px solid rgba(112, 112, 112, 0.3);
+  color: white;
+  font-size: 1.5em;
+  -webkit-transition : border 200ms ease-out; 
+  -moz-transition : border 200ms ease-out;
+  -o-transition : border 200ms ease-out;
+  transition : border 200ms ease-out;
+}
+
+.button:hover {
+  border: 2px solid rgba(112, 112, 112, 1);
+}
+
+button:focus {
+  outline: 0;
+}
+
+#_0 {
+  grid-column-end: span 2;
+}
