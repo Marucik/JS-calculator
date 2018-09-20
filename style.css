@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+* {
+  box-sizing: border-box;
+}
+
 body, html {
   margin: 0;
   height: 100%;
@@ -23,7 +27,6 @@ body {
   grid-template-areas:
     "eqn eqn eqn eqn" 
     "header header header header";
-  overflow: hidden;
   background-color: rgba(112, 112, 112, 0.473);
 }
 
@@ -33,6 +36,7 @@ body {
   align-items: flex-end;
   justify-content: flex-end;
   color: #aaa;
+  overflow: hidden;
 }
 
 .display {
@@ -43,10 +47,65 @@ body {
   align-items: flex-end;
   justify-content: flex-end;
   color: #fff;
+  overflow: hidden;
 }
 
 [data-text="0"]:empty:not(:focus):before{
-    content:attr(data-text)
+  content:attr(data-text)
+}
+
+[tooltip]{
+  margin:20px 60px;
+  position:relative;
+  display:inline-block;
+}
+[tooltip]::before {
+  content: "";
+  position: absolute;
+  top:-6px;
+  left:50%;
+  transform: translateX(-50%);
+  border-width: 4px 6px 0 6px;
+  border-style: solid;
+  border-color: rgba(0,0,0,0.7) transparent transparent     transparent;
+  z-index: 99;
+  opacity:0;
+}
+[tooltip]::after {
+  content: attr(tooltip);
+  position: absolute;
+  left:50%;
+  top:-6px;
+  transform: translateX(-50%)   translateY(-100%);
+  background: rgba(0,0,0,0.7);
+  text-align: center;
+  color: #fff;
+  padding:4px 2px;
+  font-size: 12px;
+  min-width: 80px;
+  border-radius: 5px;
+  pointer-events: none;
+  padding: 4px 4px;
+  z-index:99;
+  opacity:0;
+}
+
+[tooltip-position='left']::before{
+  left:0%;
+  top:50%;
+  margin-left:-12px;
+  transform:translatey(-50%) rotate(-90deg) 
+}
+
+[tooltip-position='left']::after{
+  left:0%;
+  top:50%;
+  margin-left:-8px;
+  transform: translateX(-100%)   translateY(-50%);
+}
+
+[tooltip]:hover::after,[tooltip]:hover::before {
+   opacity:1
 }
 
 .button {
@@ -55,6 +114,7 @@ body {
   border: 2px solid rgba(112, 112, 112, 0.3);
   color: white;
   font-size: 1.5em;
+  margin: 0;
   -webkit-transition : border 200ms ease-out; 
   -moz-transition : border 200ms ease-out;
   -o-transition : border 200ms ease-out;
