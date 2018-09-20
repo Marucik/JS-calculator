@@ -11,7 +11,7 @@ body, html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-image: url("http://api.thumbr.it/whitenoise-361x370.png?background=303030ff&noise=a3a3a3&density=20&opacity=15"); 
+  background-image: url("http://api.thumbr.it/whitenoise-361x370.png?background=303030ff&noise=a3a3a3&density=20&opacity=15");
   display: grid;
   grid-template-rows: auto;
   justify-items: center;

@@ -10,7 +10,7 @@ let clearDisplay = false;
 
 Array.from(buttons).forEach(button => {
   button.addEventListener('click', function () {
-    if (clearDisplay) {
+    if ( clearDisplay ) {
       display.innerHTML = "";
       commed = false;
       clearDisplay = false;
@@ -19,21 +19,22 @@ Array.from(buttons).forEach(button => {
     let digit = parseInt(content);
     let number = parseFloat(display.innerHTML);
     let lastPosition = display.innerHTML.slice(-1);
-    if (!isNaN(digit)) {
-      if (digit == 0 && display.innerHTML == "0") { return };
-      return display.innerHTML += digit;
-    }
     
-    // if (store[1] && content != "=") { return };
-    switch (content) {
+    if ( !isNaN(digit) ) {
+      if ( digit == 0 && display.innerHTML == "0" ) { return };
+      display.innerHTML += digit;
+      return checkNumber();
+    }
+
+    switch ( content ) {
       case ",":
-        if (commed) {break};
-        if (display.innerHTML == "") {display.innerHTML += "0"};
+        if ( commed ) {break};
+        if ( display.innerHTML == "" ) { display.innerHTML += "0" };
         display.innerHTML += ".";
         commed = true;
         break;
       case "=":
-        if (lastPosition == ".") { break };
+        if ( lastPosition == "." ) { break };
         equation.innerHTML = "";
         display.innerHTML = doTheMath(store, number, content);
         result = new Number();
@@ -41,9 +42,9 @@ Array.from(buttons).forEach(button => {
         clearDisplay = true;
         break;
       case "+/-":
-        if (display.innerHTML != "") {
+        if ( display.innerHTML != "" ) {
           negative = !negative;
-          if (negative) {
+          if ( negative ) {
             display.innerHTML = "-" + display.innerHTML;
           } else {
             display.innerHTML = display.innerHTML.substring(1);
@@ -57,23 +58,24 @@ Array.from(buttons).forEach(button => {
         display.innerHTML = ""
         break;
       default:
-        if (lastPosition == ".") { break };
-        equation.innerHTML += " " + display.innerHTML + " " + content;
+        if ( lastPosition == "." ) { break };
+        equation.innerHTML += ` ${display.innerHTML} ${content}`;
         display.innerHTML = doTheMath(store, number, content);
         commed = false;
         clearDisplay = true;
         break;
     }
+    checkNumber();
   })
 })
 
 function doTheMath (storeArr, number, sign) {
-  if (storeArr.length == 0) {
+  if ( storeArr.length == 0 ) {
     storeArr[0] = number; // number to work with
     storeArr[1] = sign; //equation type
     return "";
   } else {
-    switch (storeArr[1]) {
+    switch ( storeArr[1] ) {
       case "+":
         storeArr[0] += number;
         storeArr[1] = sign;
@@ -119,7 +121,7 @@ function handleMouseDown() {
 };
 
 function handleMouseUp(e) {
-  if (isDown && isLong) {
+  if ( isDown && isLong ) {
     isDown = false;
     e.preventDefault();
     return
